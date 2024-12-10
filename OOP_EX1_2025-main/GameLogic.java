@@ -56,7 +56,7 @@ public class GameLogic implements PlayableLogic {
                 playerNow.reduce_bomb();
             }
             reversiBoard[r][c] = disc;
-            System.out.println("player "+playerType()+" placed a "+reversiBoard[r][c].getType()+" in "+"("+r+","+c+")");
+            System.out.println("player "+playerType()+" placed a "+reversiBoard[r][c].getType()+" in "+"("+r+", "+c+")");
             flipDisc(a);  // Updates the discs that were flipped as a result
             whoPlayer = !whoPlayer;  // Changes the turn from the current player to the next player
             if (whoPlayer) {
@@ -90,7 +90,7 @@ public class GameLogic implements PlayableLogic {
         movesStack.push(flipList);
         for (Move move : flipList) {
             move.disc().setOwner(playerNow);
-            System.out.println("player "+playerType()+" flipped the "+move.disc().getType()+" in ("+move.position().row()+","+move.position().col()+")");
+            System.out.println("player "+playerType()+" flipped the "+move.disc().getType()+" in ("+move.position().row()+", "+move.position().col()+")");
         }
         System.out.println();
     }
@@ -313,17 +313,17 @@ public class GameLogic implements PlayableLogic {
             if (reversiBoard[undoPos.row()][undoPos.col()].getType().equals("💣")) {
                 reversiBoard[undoPos.row()][undoPos.col()].getOwner().number_of_bombs++;
             }
-            System.out.println("\tUndo: removing "+ reversiBoard[undoPos.row()][undoPos.col()].getType()+" from "+"("+undoPos.row()+","+undoPos.col()+")");
+            System.out.println("\tUndo: removing "+ reversiBoard[undoPos.row()][undoPos.col()].getType()+" from "+"("+undoPos.row()+", "+undoPos.col()+")");
             reversiBoard[undoPos.row()][undoPos.col()] = null;
 
             List<Move> undoMove = movesStack.pop();
             for (Move move : undoMove) {
                 if (reversiBoard[move.position().row()][move.position().col()].getOwner() == player1) {
                     reversiBoard[move.position().row()][move.position().col()].setOwner(player2);
-                    System.out.println("\tUndo: flipping back " + reversiBoard[move.position().row()][move.position().col()].getType() + " in (" + move.position().row() + "," + move.position().col() + ")");
+                    System.out.println("\tUndo: flipping back " + reversiBoard[move.position().row()][move.position().col()].getType() + " in (" + move.position().row() + ", " + move.position().col() + ")");
                 } else {
                     reversiBoard[move.position().row()][move.position().col()].setOwner(player1);
-                    System.out.println("\tUndo: flipping back " + reversiBoard[move.position().row()][move.position().col()].getType() + " in (" + move.position().row() + "," + move.position().col() + ")");
+                    System.out.println("\tUndo: flipping back " + reversiBoard[move.position().row()][move.position().col()].getType() + " in (" + move.position().row() + ", " + move.position().col() + ")");
                 }
             }
             if (playerNow == player1) {
